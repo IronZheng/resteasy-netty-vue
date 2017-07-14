@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <Properties>
+        <Property name="logBase">../log</Property>
+    </Properties>
+    <appenders>
+        <Console name="console-appender" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %msg%n" />
+        </Console>
+        <RollingFile name="common-appender" fileName="${logBase}/common.log"
+                     filePattern="${logBase}/common_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="console-appender" />
+            <appender-ref ref="common-appender" />
+        </root>
+    </loggers>
+</configuration>
